@@ -1,4 +1,6 @@
-import pygame
+
+
+import pygame, sys
 import math
 
 from pygame import Vector2
@@ -10,6 +12,7 @@ class Player(Entity):
         super().__init__(pos,groups,path,sprite_collision)
         self.create_bullet = create_bullet
         self.bullet_shot = False
+
     def get_status(self):
         if self.direction.x == 0 and self.direction.y == 0:
             self.status = self.status.split('_')[0] + '_idle'
@@ -76,9 +79,15 @@ class Player(Entity):
                 self.attacking = False
         self.image = current_animation[int(self.frame_index)]
 
+    def check_death(self):
+        if self.health <= 0:
+            pygame.quit()
+            sys.exit()
+
     def update(self,dt):
         self.input()
         self.move(dt)
+        self.check_death()
         self.animate(dt)
         self.get_status()
         self.vulnerbility_timer()

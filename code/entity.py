@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 from pygame import Vector2
 from os import walk
@@ -25,6 +27,10 @@ class Entity(pygame.sprite.Sprite):
             self.health -= 1
             self.is_vulnerble = False
             self.hit_time =  pygame.time.get_ticks()
+
+    def check_death(self):
+        if self.health <= 0:
+            self.kill()
     def vulnerbility_timer(self):
         if not self.is_vulnerble:
             current_time = pygame.time.get_ticks()

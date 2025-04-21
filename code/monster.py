@@ -82,9 +82,11 @@ class Coffin(Entity, Monster):
     def update(self, dt):
         self.walk_to_player()
         self.move(dt)
+        self.check_death()
         self.attack()
         self.animate(dt)
         self.face_player()
+        self.vulnerbility_timer()
 
 
 class Cactus(Entity, Monster):
@@ -122,6 +124,8 @@ class Cactus(Entity, Monster):
     def update(self, dt):
         self.face_player()
         self.move(dt)
+        self.check_death()
         self.attack()
         self.walk_to_player()
         self.animate(dt)
+        self.vulnerbility_timer()
