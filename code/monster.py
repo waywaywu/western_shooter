@@ -106,11 +106,10 @@ class Cactus(Entity, Monster):
         if self.attacking:
             self.status = self.status.split('_')[0] + '_attack'
 
-
     def animate(self, dt):
         current_animation = self.animation[self.status]
         if int(self.frame_index) == 6 and self.attacking and not self.bullet_shot:
-            direction = self.get_player_distance_direction()[0]
+            direction = self.get_player_distance_direction()[1]
             pos = self.rect.center + direction * 150
             self.create_bullet(pos, direction)
             self.bullet_shot = True
@@ -121,8 +120,8 @@ class Cactus(Entity, Monster):
                 self.attacking = False
         self.image = current_animation[int(self.frame_index)]
     def update(self, dt):
-        self.walk_to_player()
+        self.face_player()
         self.move(dt)
         self.attack()
-        self.face_player()
+        self.walk_to_player()
         self.animate(dt)
