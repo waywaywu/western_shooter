@@ -53,7 +53,7 @@ class Game:
 		if pygame.sprite.spritecollide(self.player, self.bullets, True):
 			self.player.damage()
 
-	def setup(self):
+	def setup(self):#coo banana
 		tmx_map =  load_pygame('../data/map.tmx')
 		for x,y,surf in tmx_map.get_layer_by_name('Fence').tiles():
 			Sprite((x * 64,y * 64),surf,[self.all_sprites,self.obstacle])
